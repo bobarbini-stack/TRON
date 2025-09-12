@@ -46,7 +46,34 @@
         <a href="https://rubika.ir/Gosettaki" target="_blank" class="px-5 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">ثبت آگهی</a>
         <a href="https://bobarbini-stack.github.io/TRON1/" target="_blank" class="px-5 py-3 bg-gray-500 text-white rounded-lg shadow hover:bg-gray-600 transition">مشاهده آگهی</a>
       </div>
-    </section><!-- HOW IT WORKS -->
+    </section><!-- ITEMS MARKET -->
+<section id="market-items" class="max-w-5xl mx-auto mt-12">
+  <h2 class="text-2xl font-bold mb-6 text-center">ایتم‌های بازار</h2>
+
+  <div class="bg-white p-4 rounded-lg shadow mb-4 flex justify-between items-center">
+    <div>
+      <p class="font-semibold">خرید 8کا سکه اسپرت2</p>
+    </div>
+    <button onclick="buyItem('8کا سکه اسپرت2', 5000)" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">خرید</button>
+  </div>
+
+  <div class="bg-white p-4 rounded-lg shadow mb-4 flex justify-between items-center">
+    <div>
+      <p class="font-semibold">خرید 5کا اسپرت2</p>
+    </div>
+    <button onclick="buyItem('اسپرت 2', 3000)" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">خرید</button>
+  </div>
+
+  <div class="bg-white p-4 rounded-lg shadow mb-4 flex justify-between items-center">
+    <div>
+      <p class="font-semibold">خرید 10کا سکه اسپرت2</p>
+    </div>
+    <button onclick="buyItem('10کا سکه اسپرت2', 7000)" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">خرید</button>
+  </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
 <section id="how" class="mt-12">
   <h3 class="text-2xl font-bold">چطور کار می‌کند</h3>
   <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -96,5 +123,9 @@
       const m = document.getElementById('mobileMenu');
       m.classList.toggle('hidden');
     });
+
+    function buyItem(itemName, price) {
+      alert(`شما می‌توانید با پرداخت ${price.toLocaleString()} تومن این ایتم (${itemName}) را دریافت کنید.\n\nشماره کارت: 0393 3820 2915 5022\nبه نام حسین سیمیاری\nبعد از پرداخت به ایدی روبیکا @Gosettaki پیام و رسید خود را وارد کنید.\nمی‌توانید بجای پول از طاق، ایتم یا سکه دیگر استفاده کنید.`);
+    }
   </script></body>
-</html>
+  </html>

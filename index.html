@@ -1,0 +1,100 @@
+<!doctype html>
+
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>بازار سکه‌های بازی — در حال ساخت</title>
+  <meta name="description" content="پلتفرم خرید و فروش سکه‌های بازی — در حال ساخت. به زودی راه‌اندازی می‌شود." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face { font-family: 'VazirLocal'; src: local('Vazir'), local('Vazir-FD'); }
+    body { font-family: VazirLocal, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+    .glow { text-shadow: 0 6px 18px rgba(99,102,241,0.15); }
+    .card-shadow { box-shadow: 0 10px 30px rgba(2,6,23,0.08); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-indigo-600 rounded-md flex items-center justify-center text-white font-bold">س</div>
+        <div>
+          <h1 class="text-lg font-semibold">بازار سکه‌های بازی</h1>
+          <p class="text-sm text-gray-500">خرید و فروش امن سکهٔ بازی — به‌زودی</p>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="#how" class="hover:text-indigo-600">چطور کار می‌کند</a>
+        <a href="#faq" class="hover:text-indigo-600">سؤالات</a>
+        <a href="#contact" class="text-white bg-indigo-600 px-4 py-2 rounded-lg">تماس</a>
+      </nav>
+      <button class="md:hidden p-2 rounded-lg" id="mobileToggle">☰</button>
+    </div>
+    <div id="mobileMenu" class="md:hidden px-4 pb-4 hidden">
+      <a href="#how" class="block py-2">چطور کار می‌کند</a>
+      <a href="#faq" class="block py-2">سؤالات</a>
+      <a href="#contact" class="block py-2">تماس</a>
+    </div>
+  </header>  <!-- HERO -->  <main class="max-w-5xl mx-auto px-4 py-12">
+    <section class="text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">بازار امن خرید و فروش <span class="text-indigo-600">سکه‌های بازی</span></h2>
+      <p class="mt-4 text-gray-600">ما در حال ساخت پلتفرمی هستیم که بازیکنان بتوانند سکه و آیتم‌های بازی خود را به‌صورت امن خرید و فروش کنند. به‌زودی راه‌اندازی می‌شود.</p>
+      <!-- دکمه‌ها -->
+      <div class="mt-6 flex justify-center gap-4">
+        <a href="https://rubika.ir/Gosettaki" target="_blank" class="px-5 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">ثبت آگهی</a>
+        <a href="https://bobarbini-stack.github.io/TRON1/" target="_blank" class="px-5 py-3 bg-gray-500 text-white rounded-lg shadow hover:bg-gray-600 transition">مشاهده آگهی</a>
+      </div>
+    </section><!-- HOW IT WORKS -->
+<section id="how" class="mt-12">
+  <h3 class="text-2xl font-bold">چطور کار می‌کند</h3>
+  <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h4 class="font-semibold">۱ — ثبت آگهی</h4>
+      <p class="text-sm text-gray-500 mt-2">فروشنده آگهی می‌سازد، نوع سکه، بازی و قیمت را مشخص می‌کند.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h4 class="font-semibold">۲ — توافق و پرداخت</h4>
+      <p class="text-sm text-gray-500 mt-2">خریدار پرداخت را انجام می‌دهد و ما به‌عنوان واسط امن وجه را نگه می‌داریم.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h4 class="font-semibold">۳ — تحویل و تایید</h4>
+      <p class="text-sm text-gray-500 mt-2">پس از تحویل سکه، وجه به فروشنده آزاد می‌شود. در صورت مشکل، پشتیبانی وارد عمل می‌شود.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="mt-12 bg-white p-6 rounded-lg shadow-sm">
+  <h3 class="text-2xl font-bold">سؤالات متداول</h3>
+  <div class="mt-4 space-y-3 text-sm text-gray-600">
+    <div>
+      <div class="font-medium">آیا معامله‌ها امن است؟</div>
+      <div>بله — ما از سیستم امانت (اسکرو) استفاده می‌کنیم تا هر دو طرف محافظت شوند.</div>
+    </div>
+    <div>
+      <div class="font-medium">پرداخت چگونه انجام می‌شود؟</div>
+      <div>در نسخهٔ بتا پرداخت از طریق کارت بانکی/درگاه انجام خواهد شد. در آینده روش‌های بیشتری افزوده می‌شود.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<footer id="contact" class="mt-12 text-sm text-gray-600">
+  <div class="bg-white p-6 rounded-lg shadow-sm">
+    <h4 class="font-semibold">تماس با پشتیبانی</h4>
+    <p class="mt-2">ایمیل: <a href="mailto:info@example.com" class="text-indigo-600">info@example.com</a></p>
+    <p class="mt-2">این سایت صرفاً نمونه و در حالت "در حال ساخت" است. برای همکاری یا تبلیغات با ما تماس بگیرید.</p>
+  </div>
+  <div class="mt-6 text-gray-400">© کلیه حقوق برای بازار سکه‌های بازی محفوظ است.</div>
+</footer>
+
+  </main>  <script>
+    // Mobile menu toggle
+    document.getElementById('mobileToggle').addEventListener('click', function(){
+      const m = document.getElementById('mobileMenu');
+      m.classList.toggle('hidden');
+    });
+  </script></body>
+</html>

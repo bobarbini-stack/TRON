@@ -11,7 +11,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-<!-- AUTH MODAL -->
+<!-- بخش ورود / ثبت‌نام -->
 <div id="authSection" class="fixed inset-0 flex items-center justify-center bg-gray-100 z-50">
   <div class="bg-white shadow-lg rounded-xl w-full max-w-md p-6 text-center">
     <h1 class="text-2xl font-bold text-indigo-600 mb-4">ورود به بازار سکه‌های بازی</h1>
@@ -21,14 +21,14 @@
       <button id="registerTab" class="px-4 py-2 bg-gray-200 rounded-lg">ثبت‌نام</button>
     </div>
 
-    <!-- Login form -->
+    <!-- فرم ورود -->
     <form id="loginForm" class="space-y-3">
       <input id="loginUser" type="text" placeholder="نام کاربری" required class="w-full p-2 border rounded-lg">
       <input id="loginPass" type="password" placeholder="رمز عبور" required class="w-full p-2 border rounded-lg">
       <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-lg">ورود</button>
     </form>
 
-    <!-- Register form -->
+    <!-- فرم ثبت‌نام -->
     <form id="registerForm" class="hidden space-y-3">
       <input id="regUser" type="text" placeholder="نام کاربری" required class="w-full p-2 border rounded-lg">
       <input id="regPass" type="password" placeholder="رمز عبور" required class="w-full p-2 border rounded-lg">
@@ -37,7 +37,7 @@
   </div>
 </div>
 
-<!-- MAIN SITE -->
+<!-- سایت اصلی -->
 <div id="mainSite" class="hidden">
   <header class="bg-white shadow-sm sticky top-0 z-40">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -56,15 +56,16 @@
     <section class="text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">بازار امن خرید و فروش <span class="text-indigo-600">OXM</span></h2>
       <p class="mt-4 text-gray-600">ما در حال ساخت پلتفرمی هستیم که بازیکنان بتوانند سکه و آیتم‌های بازی خود را به‌صورت امن خرید و فروش کنند.</p>
-      
-      <div class="mt-6 flex justify-center gap-4">
-        <a href="https://rubika.ir/Gosettaki" target="_blank" class="px-5 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">ثبت آگهی</a>
-        <a href="https://bobarbini-stack.github.io/TRON1/" target="_blank" class="px-5 py-3 bg-gray-500 text-white rounded-lg shadow hover:bg-gray-600 transition">مشاهده آگهی</a>
-      </div>
     </section>
 
-    <section id="market-items" class="max-w-5xl mx-auto mt-12">
-      <h2 class="text-2xl font-bold mb-6 text-center">ایتم‌های بازار</h2>
+    <!-- دکمه دسته‌بندی -->
+    <div class="text-center mt-8">
+      <button id="showCP" class="px-5 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">سی‌پی کلاف</button>
+    </div>
+
+    <!-- لیست آیتم‌ها (ابتدا مخفی) -->
+    <section id="market-items" class="max-w-5xl mx-auto mt-6 hidden">
+      <h2 class="text-2xl font-bold mb-6 text-center">آیتم‌های CP</h2>
 
       <div class="bg-white p-4 rounded-lg shadow mb-4 flex justify-between items-center">
         <div>
@@ -91,16 +92,22 @@
       </div>
     </section>
 
-    <!-- SUPPORT INFO FOOTER -->
-    <div class="max-w-5xl mx-auto mt-12 p-4 text-center text-gray-500 text-sm">
-      اگر پشتیبانی روبیکا جوابی نداد، از ایمیل 
-      <a href="mailto:sweetwantad@gmail.com" class="text-indigo-600">sweetwantad@gmail.com</a> 
-      پیام دهید جهت همکاری و تبلیغات هم  پیام دهدید
+    <!-- فوتر پشتیبانی و فرم ارسال نظر -->
+    <div class="max-w-5xl mx-auto mt-12 p-4 text-center text-gray-500 text-sm space-y-4">
+      <p>اگر پشتیبانی روبیکا جوابی نداد، از ایمیل زیر پیام دهید:</p>
+      <a href="mailto:sweetwantad@gmail.com" class="text-indigo-600">sweetwantad@gmail.com</a>
+
+      <!-- فرم ارسال نظر -->
+      <form id="feedbackForm" class="mt-2 flex flex-col items-center gap-2">
+        <textarea id="feedbackText" placeholder="نظر یا مشکل خود را بنویسید..." required
+          class="w-full max-w-md p-2 border rounded-lg resize-none"></textarea>
+        <a id="sendFeedback" href="#" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">ارسال به ایمیل</a>
+      </form>
     </div>
   </main>
 </div>
 
-<!-- BUY MODAL -->
+<!-- مودال خرید -->
 <div id="buyModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
   <div class="bg-white rounded-2xl shadow-lg p-6 w-96">
     <h3 id="modalTitle" class="text-lg font-bold mb-2">خرید آیتم</h3>
@@ -114,63 +121,64 @@
 </div>
 
 <script>
-  let users = {};
-  let loggedInUser = null;
+let users = {};
+let loggedInUser = null;
 
-  const authSection = document.getElementById("authSection");
-  const mainSite = document.getElementById("mainSite");
-  const loginForm = document.getElementById("loginForm");
-  const registerForm = document.getElementById("registerForm");
-  const loginTab = document.getElementById("loginTab");
-  const registerTab = document.getElementById("registerTab");
-  const logoutBtn = document.getElementById("logoutBtn");
+// المنت‌ها
+const authSection = document.getElementById("authSection");
+const mainSite = document.getElementById("mainSite");
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
+const loginTab = document.getElementById("loginTab");
+const registerTab = document.getElementById("registerTab");
+const logoutBtn = document.getElementById("logoutBtn");
+
+// ورود و ثبت‌نام
+loginTab.onclick = () => { loginForm.classList.remove("hidden"); registerForm.classList.add("hidden"); };
+registerTab.onclick = () => { registerForm.classList.remove("hidden"); loginForm.classList.add("hidden"); };
+
+registerForm.onsubmit = function(e){
+  e.preventDefault();
+  const user = document.getElementById("regUser").value;
+  const pass = document.getElementById("regPass").value;
+  if(users[user]) { alert("این نام کاربری قبلاً ثبت شده است!"); return; }
+  users[user] = pass;
+  alert("ثبت‌نام موفق شد. حالا وارد شوید.");
+  loginForm.classList.remove("hidden");
+  registerForm.classList.add("hidden");
+};
+
+loginForm.onsubmit = function(e){
+  e.preventDefault();
+  const user = document.getElementById("loginUser").value;
+  const pass = document.getElementById("loginPass").value;
+  if(!users[user]) { alert("نام کاربری وجود ندارد!"); return; }
+  if(users[user] !== pass) { alert("رمز اشتباه است!"); return; }
+  enterSite(user);
+};
+
+logoutBtn.onclick = () => { localStorage.removeItem("loggedInUser"); location.reload(); };
+
+function enterSite(user){
+  loggedInUser = user;
+  localStorage.setItem("loggedInUser", user);
+  authSection.classList.add("hidden");
+  mainSite.classList.remove("hidden");
+}
+
+// دکمه‌های خرید
+function setupBuyButtons() {
+  const buyButtons = document.querySelectorAll(".buyBtn");
   const buyModal = document.getElementById("buyModal");
   const modalTitle = document.getElementById("modalTitle");
   const modalText = document.getElementById("modalText");
   const closeModalBtn = document.getElementById("closeModal");
-  const buyButtons = document.querySelectorAll(".buyBtn");
 
-  window.onload = function() {
-    const savedUser = localStorage.getItem("loggedInUser");
-    if(savedUser) enterSite(savedUser);
-  };
-
-  loginTab.onclick = () => { loginForm.classList.remove("hidden"); registerForm.classList.add("hidden"); };
-  registerTab.onclick = () => { registerForm.classList.remove("hidden"); loginForm.classList.add("hidden"); };
-
-  registerForm.onsubmit = function(e){
-    e.preventDefault();
-    const user = document.getElementById("regUser").value;
-    const pass = document.getElementById("regPass").value;
-    if(users[user]) { alert("این نام کاربری قبلاً ثبت شده است!"); return; }
-    users[user] = pass;
-    alert("ثبت‌نام موفق شد. حالا وارد شوید.");
-    loginForm.classList.remove("hidden");
-    registerForm.classList.add("hidden");
-  };
-
-  loginForm.onsubmit = function(e){
-    e.preventDefault();
-    const user = document.getElementById("loginUser").value;
-    const pass = document.getElementById("loginPass").value;
-    if(!users[user]) { alert("نام کاربری وجود ندارد!"); return; }
-    if(users[user] !== pass) { alert("رمز اشتباه است!"); return; }
-    enterSite(user);
-  };
-
-  function enterSite(user){
-    loggedInUser = user;
-    localStorage.setItem("loggedInUser", user);
-    authSection.classList.add("hidden");
-    mainSite.classList.remove("hidden");
-  }
-
-  logoutBtn.onclick = () => { localStorage.removeItem("loggedInUser"); location.reload(); };
+  const items = ["80CP","160CP","240CP"];
+  const prices = [95000,185000,290000];
 
   buyButtons.forEach((btn,i)=>{
-    const items = ["80CP","160CP","240CP"];
-    const prices = [95000,185000,290000];
-    btn.onclick = function(){
+    btn.onclick = () => {
       modalTitle.textContent = `خرید ${items[i]}`;
       modalText.innerHTML = `
         شما می‌توانید با پرداخت <strong>${prices[i].toLocaleString()} تومان</strong> این آیتم (${items[i]}) را دریافت کنید.<br><br>
@@ -179,11 +187,37 @@
         آیدی روبیکا جهت پشتیبانی: <strong>Gosettaki@</strong>
       `;
       buyModal.classList.remove("hidden");
-    }
+    };
   });
 
-  closeModalBtn.onclick = () => { buyModal.classList.add("hidden"); };
+  closeModalBtn.onclick = () => buyModal.classList.add("hidden");
+}
+
+// دکمه نمایش CP
+const showCPBtn = document.getElementById("showCP");
+const marketItems = document.getElementById("market-items");
+showCPBtn.onclick = () => {
+  marketItems.classList.toggle("hidden");
+};
+
+// ارسال نظر به ایمیل
+const sendFeedback = document.getElementById("sendFeedback");
+const feedbackText = document.getElementById("feedbackText");
+
+sendFeedback.onclick = (e) => {
+  e.preventDefault();
+  const subject = encodeURIComponent("نظر یا مشکل از بازار OXM");
+  const body = encodeURIComponent(feedbackText.value);
+  window.location.href = `mailto:sweetwantad@gmail.com?subject=${subject}&body=${body}`;
+};
+
+// بارگذاری اولیه
+window.onload = function(){
+  setupBuyButtons();
+  const savedUser = localStorage.getItem("loggedInUser");
+  if(savedUser) enterSite(savedUser);
+};
 </script>
 
 </body>
-  </html>
+        </html> 
